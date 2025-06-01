@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react"
 import { Outlet, useLocation } from "react-router-dom"
 import { MainBottomBar } from "@/components/MainBottomBar"
 import { motion, AnimatePresence } from "framer-motion"
-
 export function AppLayout() {
   const location = useLocation()
   const path = location.pathname
@@ -43,9 +42,11 @@ export function AppLayout() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [expanded, isProfileRoute, isSheetOpen])
 
-  return (
-    <div className="pb-16 relative min-h-screen">
+   return (
+    <div className="pb-16 relative min-h-screen flex flex-col">
       <Outlet />
+
+
       {showBottombar && (
         <div className="fixed bottom-0 left-0 right-0 z-50">
           {/* Mobile View: Always show full bar */}

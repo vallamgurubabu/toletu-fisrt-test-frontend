@@ -8,6 +8,7 @@ import { useLocationStore } from "@/store/useLocationStore"
 import { useNotificationStore } from "@/store/useNotificationStore"
 import { fetchNotifications, performSearch } from "@/pages/lib/api"
 import { getFromCache, setInCache } from "@/pages/lib/redis"
+import { useNavigate } from 'react-router-dom'
 
 const cities = [
   'Amaravati', 'Anantapur','Chittoor', 
@@ -17,20 +18,27 @@ const cities = [
 ].sort()
 
 export function Header() {
+  const navigate = useNavigate()
   const { selectedLocation, setSelectedLocation } = useLocationStore()
   const { isOpen, notifications, openSheet, closeSheet, setNotifications } = useNotificationStore()
   const [searchText, setSearchText] = useState('')
 
   const handleSearch = async () => {
-    const cacheKey = `${selectedLocation}:${searchText}`
-    let results = getFromCache(cacheKey)
-    if (!results) {
-      results = await performSearch(searchText, selectedLocation)
-      setInCache(cacheKey, results)
-    }
-    console.log("Search Results:", results)
+  if (!searchText.trim()) return
+
+  const cacheKey = `${selectedLocation}:${searchText.trim()}`
+  let results = getFromCache(cacheKey)
+
+  if (!results) {
+    results = await performSearch(searchText.trim(), selectedLocation)
+    setInCache(cacheKey, results)
   }
 
+  // After fetching or getting from cache, redirect to the search results page
+  const query = encodeURIComponent(searchText.trim())
+  const location = encodeURIComponent(selectedLocation)
+  navigate(`search/?q=${query}&location=${location}`)
+}
   const handleNotifications = async () => {
     const notes = await fetchNotifications()
     setNotifications(notes)

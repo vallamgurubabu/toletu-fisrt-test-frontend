@@ -9,13 +9,13 @@ export default function RoommateCategorySelectPage() {
   const options = [
     {
       title: "I Have a Room",
-      description: "Looking for a roommate to move in",
+      description: "I am Looking for a Roommate to move in",
       icon: <UserPlus className="w-10 h-10 text-blue-600" />,
       action: () => navigate("/roommate-pool"),
     },
     {
       title: "I Need a Room",
-      description: "Looking for a room to move into",
+      description: "I am Looking for a Room to move into",
       icon: <BedDouble className="w-10 h-10 text-emerald-600" />,
       action: () => navigate("/roommate-pool"),
     },

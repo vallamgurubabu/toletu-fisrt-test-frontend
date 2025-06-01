@@ -41,7 +41,7 @@ export function FilterSortBar() {
     <div className="flex flex-row sm:flex-row items-center gap-2 w-full px-1 py-2 bg-white border-b shadow-md">
       {/* Sort by */}
       <div className="flex flex-col w-full sm:w-1/2">
-        
+  
         <Select value={selectedSort} onValueChange={setSelectedSort}>
           <SelectTrigger id="sort" className="w-full">
             <SelectValue placeholder="Sort By" />

@@ -9,6 +9,9 @@ import RoommateProfileDetailsPage from "@/pages/RoommateProfileDetailsPage"
 import RoommateCategorySelectPage from "@/pages/RoommateCategorySelectPage"
 import DynamicPostAdFormPage from "@/pages/DynamicPostAdFormPage"
 import PostAdCategorySelectPage from "@/pages/PostAdCategorySelectPage"
+import { SearchResultsPage } from "@/pages/SearchResultPage"
+import PrivacyPolicyPage from "@/pages/PrivacyPolicyPage"
+import LoginPage from "@/pages/LoginPage"
 
 
 const router = createBrowserRouter([
@@ -19,13 +22,16 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: "browse", element: <BrowsePage /> },
+      {path:"search/", element:<SearchResultsPage/>},
       { path: "listing/:id", element: <DummyListingCardDetails/> },
       {  path: "roommate/:id",element: <RoommateProfileDetailsPage />,},
+      {path:"/login",element:<LoginPage/>},
       {path:"Post-Ad-Form",element:<PostAdCategorySelectPage/>},
       {path:"DynamicForm/:category",element:<DynamicPostAdFormPage/>},
       { path: "roommate-pool", element: <RoommatePoolPage /> },
-      {path:"roommate-category", element:<RoommateCategorySelectPage/>}
-        
+      {path:"roommate-category", element:<RoommateCategorySelectPage/>},
+      {path:"privacy",element:<PrivacyPolicyPage/>}
+
     ],
   },
 ])

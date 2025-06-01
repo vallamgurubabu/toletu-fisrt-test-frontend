@@ -2,6 +2,7 @@
 import { useNavigate, useLocation } from "react-router-dom"
 import { Home, Users, PlusCircle } from "lucide-react"
 import ProfileSheet from "./ui/ProfileSheet"
+import { useAuthStore } from "@/store/useAuthStore"
 
 interface MainBottomBarProps {
   isSheetOpen: boolean
@@ -11,6 +12,8 @@ interface MainBottomBarProps {
 export function MainBottomBar({ isSheetOpen, setIsSheetOpen }: MainBottomBarProps) {
   const navigate = useNavigate()
   const location = useLocation()
+  const { isAuthenticated } = useAuthStore()
+
 
   const isActive = (path: string) => location.pathname === path
 
@@ -38,17 +41,23 @@ export function MainBottomBar({ isSheetOpen, setIsSheetOpen }: MainBottomBarProp
         </div>
 
         <button
-          onClick={() => setIsSheetOpen(true)}
-          className={`flex-1 flex flex-col items-center justify-center text-white ${
-            isActive("/profile") ? "font-bold" : "font-medium"
-          }`}
-        >
-          <Home size={24} />
-          <span className="text-xs mt-0.5">Profile</span>
-        </button>
+  onClick={() => {
+    if (isAuthenticated) {
+      setIsSheetOpen(true)
+    } else {
+      navigate("/login")
+    }
+  }}
+  className={`flex-1 flex flex-col items-center justify-center text-white ${
+    isActive("/profile") ? "font-bold" : "font-medium"
+  }`}
+>
+  <Home size={24} />
+  <span className="text-xs mt-0.5">Profile</span>
+</button>
       </nav>
 
       <ProfileSheet open={isSheetOpen} onOpenChange={setIsSheetOpen} />
     </>
   )
-}
+} 

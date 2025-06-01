@@ -2,6 +2,7 @@
 import { useInitUserSettings } from './hooks/useInitUserSettings'
 import { AppRouter } from '@/routes/AppRouter'
 import { Toaster } from "@/components/ui/sonner"
+import { SessionManager } from './components/SessionManager'
 
 function App() {
   useInitUserSettings()
@@ -9,6 +10,7 @@ function App() {
 
   return (
     <>
+    <SessionManager/>
       <AppRouter />
       <Toaster />
     </>
