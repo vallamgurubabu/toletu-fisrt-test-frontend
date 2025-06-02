@@ -32,6 +32,7 @@ export function Header() {
     if (!selectedLocation) {
       setShowLocationWarning(true)
       return
+
     }
     setShowLocationWarning(false)
 
