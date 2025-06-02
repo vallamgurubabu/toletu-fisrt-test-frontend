@@ -57,6 +57,7 @@ export function FilterSortBar() {
             ))}
           </SelectContent>
         </Select>
+
       </div>
 
       {/* Area Dropdown */}
