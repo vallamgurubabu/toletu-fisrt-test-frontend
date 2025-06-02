@@ -52,14 +52,14 @@ export function CategoryMiniCards() {
                             key={slug}
                             onClick={() => handleSelect(slug)}
                             className={cn(
-                                "min-w-[68px] h-[68px] rounded-md border text-center cursor-pointer transition duration-200 flex flex-col items-center justify-center",
+                                "min-w-[58px] h-[58px] rounded-md border text-center cursor-pointer transition duration-200 flex flex-col items-center justify-center",
                                 isSelected
                                     ? "bg-blue-100 border-blue-500 text-blue-600 shadow-sm"
                                     : "bg-white border-gray-200 text-gray-600 hover:border-blue-400 hover:bg-blue-50 hover:text-blue-600"
                             )}
                         >
-                            <Icon size={18} className="mb-1" />
-                            <span className="text-[10px] font-medium leading-tight text-center">
+                            <Icon size={14} className="mb-1" />
+                            <span className="text-[9px] font-medium leading-tight text-center">
                                 {label}
                             </span>
                         </div>

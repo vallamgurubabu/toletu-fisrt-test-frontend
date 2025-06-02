@@ -1,7 +1,7 @@
 import { Header } from "@/components/ui/Header"
 // import { CategoryBar } from "@/components/ui/CategoryBar"
 import { CategoryMiniCards } from '../components/ui/CategoryMiniCards'
-// import { FilterSortBar } from "@/components/FilterSortBar"
+import { FilterSortBar } from "@/components/FilterSortBar"
 import { ListingScrollContainer } from "@/components/ListingScrollContainer"
 
 
@@ -12,7 +12,7 @@ const HomePage = () => {
       <Header />
       {/* <CategoryBar /> */}
       <CategoryMiniCards />
-      {/* <FilterSortBar /> */}
+      <FilterSortBar />
       <ListingScrollContainer />
 
 
