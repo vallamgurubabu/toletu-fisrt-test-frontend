@@ -6,14 +6,15 @@ import { Button } from "@/components/ui/button"
 import { Bell } from "lucide-react"
 import { useLocationStore } from "@/store/useLocationStore"
 import { useNotificationStore } from "@/store/useNotificationStore"
+import { FilterSortBar } from "@/components/FilterSortBar"
 import { fetchNotifications, performSearch } from "@/pages/lib/api"
 import { getFromCache, setInCache } from "@/pages/lib/redis"
 import { useNavigate } from 'react-router-dom'
 
 const cities = [
-  'Amaravati', 'Anantapur','Chittoor', 
-   'Guntur', 'Kadapa', 'Kakinada', 'Krishna', 'Kurnool',
-   'Nandyal', 'Nellore', 'Vijayawada', 
+  'Amaravati', 'Anantapur', 'Chittoor',
+  'Guntur', 'Kadapa', 'Kakinada', 'Krishna', 'Kurnool',
+  'Nandyal', 'Nellore', 'Vijayawada',
   'Rajahmundry', 'Srikakulam', 'Tirupati', 'Visakhapatnam',
 ].sort()
 
@@ -24,21 +25,21 @@ export function Header() {
   const [searchText, setSearchText] = useState('')
 
   const handleSearch = async () => {
-  if (!searchText.trim()) return
+    if (!searchText.trim()) return
 
-  const cacheKey = `${selectedLocation}:${searchText.trim()}`
-  let results = getFromCache(cacheKey)
+    const cacheKey = `${selectedLocation}:${searchText.trim()}`
+    let results = getFromCache(cacheKey)
 
-  if (!results) {
-    results = await performSearch(searchText.trim(), selectedLocation)
-    setInCache(cacheKey, results)
+    if (!results) {
+      results = await performSearch(searchText.trim(), selectedLocation)
+      setInCache(cacheKey, results)
+    }
+
+    // After fetching or getting from cache, redirect to the search results page
+    const query = encodeURIComponent(searchText.trim())
+    const location = encodeURIComponent(selectedLocation)
+    navigate(`search/?q=${query}&location=${location}`)
   }
-
-  // After fetching or getting from cache, redirect to the search results page
-  const query = encodeURIComponent(searchText.trim())
-  const location = encodeURIComponent(selectedLocation)
-  navigate(`search/?q=${query}&location=${location}`)
-}
   const handleNotifications = async () => {
     const notes = await fetchNotifications()
     setNotifications(notes)
@@ -78,15 +79,7 @@ export function Header() {
           </Sheet>
         </div>
       </div>
-
-      <div className="flex gap-1">
-        <Input
-          placeholder="Search 'Houses' 'Flats' 'Shops' properties..."
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-        />
-        <Button onClick={handleSearch} className='bg-blue-400'>Search</Button>
-      </div>
+      <FilterSortBar />
     </header>
   )
 }

@@ -17,7 +17,7 @@ export const ListingScrollContainer = () => {
   useEffect(() => {
     const dummyListings = Array.from({ length: 20 }, (_, i) => ({
       id: `${i}`,
-      image: "/placeholder.jpg",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvWJgmU4ZlB4mITexoxplZ8HjhFMToAjvtCw&s",
       rent: `₹${5000 + i * 100}`,
       type: "Apartment",
       location: "Vijayawada",

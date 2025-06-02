@@ -28,30 +28,29 @@ export function ListingCard({ listing }: { listing: Listing }) {
   return (
     <Card
       onClick={() => navigate(`/listing/${listing.id}`)}
-      className="relative min-w-[250px] max-w-sm cursor-pointer hover:shadow-lg transition-shadow"
+      className="relative min-w-[250px] max-w-sm cursor-pointer hover:shadow-lg transition-shadow p-0"
     >
       {/* Love icon on top-right */}
- <button
-  onClick={toggleLike}
-  className="absolute top-2 right-2 z-0 p-1 rounded-full"
-  aria-label={liked ? 'Unlike' : 'Like'}
->
-  <Heart
-    size={30}
-    strokeWidth={0}
-    fill={liked ? 'currentColor' : 'black'}
-    className={`
-      w-7 h-7
-      transition-colors duration-[500ms] ease-in-out
-      ${liked ? 'text-red-500' : 'text-blue-500'}
-    `}
-  />
-</button>
+      <button
+        onClick={toggleLike}
+        className="absolute top-2 right-2 z-10 p-1 rounded-full"
+        aria-label={liked ? "Unlike" : "Like"}
+      >
+        <Heart
+          size={30}
+          strokeWidth={0}
+          fill={liked ? "currentColor" : "black"}
+          className={`w-7 h-7 transition-colors duration-[500ms] ease-in-out ${liked ? "text-red-500" : "text-blue-500"
+            }`}
+        />
+      </button>
+
       <img
         src={listing.image}
         alt="Listing"
-        className="w-60 h-20 object-cover rounded-t-md"
+        className="w-full h-40 sm:h-48 md:h-56 object-cover rounded-t-md m-0 p-0"
       />
+
       <CardContent className="p-4 space-y-1">
         <div className="flex justify-between text-lg font-bold text-primary">
           {listing.rent}
