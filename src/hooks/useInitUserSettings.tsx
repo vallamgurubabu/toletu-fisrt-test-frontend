@@ -9,6 +9,7 @@ export function useInitUserSettings() {
   useEffect(() => {
     console.log("useEffect in useInitUserSettings running")
 
+    
     // Location access
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(

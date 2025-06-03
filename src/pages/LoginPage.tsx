@@ -103,10 +103,10 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[#e6f0fb] p-4">
+    <div className="h-screen flex flex-col items-center justify-center bg-[#e6f0fb] p-4">
 
       <ToletuLogo />
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-md overflow-hidden p-6 space-y-4 relative min-h-[400px]">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-md overflow-hidden p-6 space-y-4 relative min-h-[400phttps://github.com/Praween-em/toletu-fisrt-test-frontend/tree/masterx]">
         {/* LOGIN FORM */}
         {isLogin && (
           <div className="space-y-4 animate-fade-in">
@@ -173,7 +173,7 @@ export default function LoginPage() {
             {signupStep === 1 && (
               <>
                 <InputOTP maxLength={6} value={otp} onChange={setOtp}>
-                  <InputOTPGroup className="ml-2 md:ml-6 lg:ml-22">
+                  <InputOTPGroup className="ml-8 md:ml-8 lg:ml-22">
                     {[...Array(6)].map((_, i) => (
                       <InputOTPSlot key={i} index={i} />
                     ))}
