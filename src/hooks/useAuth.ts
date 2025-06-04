@@ -1,17 +1,33 @@
-import { useAuthStore } from "@/store/useAuthStore"
+// hooks/useAuth.ts
+import { useAuthStore } from "@/store/useAuthStore";
 import { useAuthServices } from "@/hooks/useAuthServies"
 
 export function useAuth() {
-  const { user, isAuthenticated } = useAuthStore()
-  const { login, signup,logout, restoreSession, checkSessionExpiry } = useAuthServices()
+  const { user, accessToken, isAuthenticated, signupPhone, otpSent } = useAuthStore();
+
+  const {
+    login,
+    logout,
+    startSignup,
+    verifySignupOtp,
+    completeSignupAndLogin,
+    authFetch,
+    refreshToken,
+  } = useAuthServices();
 
   return {
     user,
+    accessToken,
     isAuthenticated,
+    signupPhone,
+    otpSent,
+
     login,
-    signup,
     logout,
-    restoreSession,
-    checkSessionExpiry,
-  }
+    startSignup,
+    verifySignupOtp,
+    completeSignupAndLogin,
+    authFetch,
+    refreshToken,
+  };
 }

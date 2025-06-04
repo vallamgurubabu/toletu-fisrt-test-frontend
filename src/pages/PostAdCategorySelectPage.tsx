@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import {
   Home,
   Building,
@@ -17,13 +16,12 @@ import {
   Megaphone,
 } from "lucide-react";
 
-// Slug-based categories
 const categories = [
   { label: "Houses", slug: "houses", icon: Home },
   { label: "Apartments", slug: "apartments", icon: Building },
   { label: "Rooms", slug: "rooms", icon: Bed },
   { label: "Flats", slug: "flats", icon: Landmark },
-  { label: "PG & Hostels", slug: "pg hostels", icon: Hotel },
+  { label: "PG & Hostels", slug: "pg-hostels", icon: Hotel },
   { label: "Office Space", slug: "office-space", icon: Briefcase },
   { label: "Studio Space", slug: "studio-space", icon: Layout },
   { label: "Shops", slug: "shops", icon: ShoppingBag },
@@ -37,8 +35,10 @@ const PostAdCategorySelectPage = () => {
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  const handleNext = () => {
-    if (selectedSlug) navigate(`/DynamicForm/${encodeURIComponent(selectedSlug)}`);
+  // Navigate immediately on click
+  const handleCategoryClick = (slug: string) => {
+    setSelectedSlug(slug); // optional, keeps highlight if needed
+    navigate(`/DynamicForm/${encodeURIComponent(slug)}`);
   };
 
   return (
@@ -49,7 +49,7 @@ const PostAdCategorySelectPage = () => {
         {categories.map(({ label, slug, icon: Icon }) => (
           <Card
             key={slug}
-            onClick={() => setSelectedSlug(slug)}
+            onClick={() => handleCategoryClick(slug)}
             className={`cursor-pointer hover:shadow-lg transition duration-200 border-2 ${
               selectedSlug === slug
                 ? "border-blue-500 bg-blue-50"
@@ -64,15 +64,7 @@ const PostAdCategorySelectPage = () => {
         ))}
       </div>
 
-      <div className="flex justify-center pt-4">
-        <Button
-          disabled={!selectedSlug}
-          onClick={handleNext}
-          className="px-6 py-2"
-        >
-          Next
-        </Button>
-      </div>
+      {/* Removed the Next button */}
     </div>
   );
 };
